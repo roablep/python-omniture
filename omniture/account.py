@@ -39,7 +39,7 @@ class Account(object):
     def _build_token(self):
         nonce = str(time.time())
         base64nonce = binascii.b2a_base64(binascii.a2b_qp(nonce))
-        created_date = datetime.today().isoformat() + 'Z'
+        created_date = datetime.utcnow().isoformat() + 'Z'
         sha_object = sha.new(nonce + created_date + self.secret)
         password_64 = binascii.b2a_base64(sha_object.digest())
 
